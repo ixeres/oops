@@ -44,3 +44,29 @@ class Cat
     end
   end
 end
+
+# Exercise 4: VIDYA GAMES?!
+
+class Player
+  attr_accessor :gold_coins, :health_points, :lives
+
+  def initialize
+    @lives = 4
+    @gold_coins = 0
+    @health_points = 10
+  end
+
+  def level_up
+    (@lives += 1)
+  end
+
+  def collect_treasure
+    @gold_coins += 1
+    if (@gold_coins % 10 == 0)
+      level_up
+    end
+  end
+
+  def do_battle(damage = 1)
+    
+end
