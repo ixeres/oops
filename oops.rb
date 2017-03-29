@@ -67,6 +67,24 @@ class Player
     end
   end
 
-  def do_battle(damage = 1)
-    
+  def do_battle
+    if (@health_points > 1)
+    @health_points -= 1
+  else
+      if (@lives > 0)
+      @lives -= 1
+      @health_points = 10
+    else
+      restart
+    end
+  end
+  @health_points #makes sure game remembers last health point value.
+end
+
+  def restart
+    puts "#{@name} is a loser and died. n00b."
+    @lives = 4
+    @gold_coins = 0
+    @health_points = 10
+  end
 end
