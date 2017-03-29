@@ -5,18 +5,28 @@ class Paperboy
   attr_accessor :name, :experience
   attr_reader :earnings
 
-def report
-  p "Looks like #{@name} has delivered #{@experience} papers, earning him $#{@earnings}! Great job, #{@name}!"
+  def initialize(name)
+    @name = name.to_s
+    @experience = 0
+    @earnings = 0
 
-def deliver(start_address, end_address)
-  (houses = start_address - end_address)
-  (money = houses * 0.25)
+  def report
+    p "Looks like #{@name} has delivered #{@experience} papers, earning him $#{@earnings}! Great job, #{@name}!"
+  end
 
-def quota
-  (50 + @experience/2)
-  p "#{@name} has to deliver #{quota} papers on their next delivery!"
+  def deliver(start_address, end_address)
+    houses = (end_address - start_address)
+    money = (houses * 0.25)
+    over_quota = (houses - quota)
+    if (over_quota > 0)
+      p (over_quota * 0.25 + money)
+    else
+      p money
+    end
+  end
+end
 
-def get_money
-
-
+  def quota
+    50 + (@experience / 2)
+  end
 end
