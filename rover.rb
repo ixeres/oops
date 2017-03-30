@@ -48,9 +48,10 @@ class Rover
   compass = Array['N', 'E', 'S', 'W'] #not sure where to put this just yet.
 
   def initialize
-    @x_coord = 3
-    @y_coord = 3
-    @direction = 'E'
+    @x_coord = 1
+    @y_coord = 2
+    @direction = 'N'
+  end
 
   def read_instruction(input)
     array = input.scan(/\w/)
@@ -80,19 +81,38 @@ class Rover
   def turn
     compass = Array['N', 'E', 'S', 'W']
     index = @direction.each_index
-    if (@direction == 'N')
-      index += 3
+    if instruction.include? ('L')
+      then
+      if (@direction == 'N')
+        index += 3
+      end
+      if (@direction == 'S')
+        index -= 1
+      end
+      if (@direction == 'W')
+        index -= 1
+      end
+      if (@direction == 'E')
+        index -= 1
+      end
     end
-    if (@direction == 'S')
-      index -= 1
-    end
-    if (@direction == 'W')
-      index -= 3
-    end
-    if (@direction == 'E')
-      index += 1
+    if instruction.include? ('R')
+      then
+      if (@direction == 'N')
+        index += 1
+      end
+      if (@direction == 'S')
+        index += 1
+      end
+      if (@direction == 'W')
+        index -= 3
+      end
+      if (@direction == 'E')
+        index += 1
+      end
     end
   end
+
 
   def announce
     puts "I am currently at #{@x_coord},#{@y_coord}, and am facing #{@direction}!"
