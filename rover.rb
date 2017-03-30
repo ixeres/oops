@@ -51,24 +51,48 @@ class Rover
     @direction = 'N'
 
   def read_instruction(input)
-    array = input.scan(/\w/) #turns base input into an array of values. Now what to do with the array?
+    array = input.scan(/\w/)
+    #turns base input into an array of values. Now what to do with the array?
     #need to transform each of the values in the array, while still maintaining the order of actions.
     #this step needs to essentially read the instructions, and if it's a turn, perform the 'turn' method.
     #if it's a movement, it will perform the 'move' method.
+    #something to check the value in an array. if it's L/R, perform turn. If it's M, perform move.
     end
     end
   end
 
   def move
+    if (@direction == 'N')
+      @y_coord += 1
+    end
+    if (@direction == 'S')
+      @y_coord -= 1
+    end
+    if (@direction == 'E')
+      @x_coord += 1
+    end
+    if (@direction == 'W')
+      @x_coord -= 1
+    end
+  end
     #add in a rule that determines to add or subtract from the x_coord or y_coord, depending on the rover's facing.
     #if the rover is facing north, + 1 to y, south, -1 to y. East = + 1 to x, West = -1 to x. Will need compass values.
   end
 
   def turn
     compass = Array['N', 'E', 'S', 'W']
-    #add in a rule to transpose turns (L,R) into compass directions, with an exception if the turn happens on index 0 or 3.
-    #So, L will generally - 1 from the index of the compass, unless it's 0, in which case it will + 3.
-    #Conversely, R will generally + 1 to the index of the compass, unless it's 3, in which case it will - 3.
+    if (@direction(index) < 0) += 3
+    else
+      @direction(index) -= 1
+    end
+  end #add in a rule to transpose turns (L,R) into compass directions, with an exception if the turn happens on index 0 or 3.
+    if (@direction(index) > 3) -= 3
+    else
+      @direction(index) += 1
+    end
+  end
+  #So, L will generally - 1 from the index of the compass, unless it's 0, in which case it will + 3.
+  #Conversely, R will generally + 1 to the index of the compass, unless it's 3, in which case it will - 3.
   end
 
   def position_announce
