@@ -51,20 +51,28 @@ class Rover
     @direction = 'N'
 
   def read_instruction(input)
-    array = input.scan(/\w/)
-    array.each do |moves, turns|
-      (moves = 'M')
-      (turns = 'L', 'R')
+    array = input.scan(/\w/) #turns base input into an array of values. Now what to do with the array?
+    #need to transform each of the values in the array, while still maintaining the order of actions.
+    #this step needs to essentially read the instructions, and if it's a turn, perform the 'turn' method.
+    #if it's a movement, it will perform the 'move' method.
     end
     end
   end
 
   def move
-
+    #add in a rule that determines to add or subtract from the x_coord or y_coord, depending on the rover's facing.
+    #if the rover is facing north, + 1 to y, south, -1 to y. East = + 1 to x, West = -1 to x. Will need compass values.
   end
 
   def turn
-    Array['N', 'E', 'S', 'W']
-
+    compass = Array['N', 'E', 'S', 'W']
+    #add in a rule to transpose turns (L,R) into compass directions, with an exception if the turn happens on index 0 or 3.
+    #So, L will generally - 1 from the index of the compass, unless it's 0, in which case it will + 3.
+    #Conversely, R will generally + 1 to the index of the compass, unless it's 3, in which case it will - 3.
   end
+
+  def position_announce
+    puts "I am currently at #{@x_coord},#{@y_coord}, and am facing #{@direction}!"
+  end
+
 end
